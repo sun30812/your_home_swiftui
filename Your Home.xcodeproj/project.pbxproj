@@ -45,6 +45,8 @@
 		9761C483264D19EE00E85183 /* Your HomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Your HomeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9761C487264D19EE00E85183 /* Your_HomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Your_HomeUITests.swift; sourceTree = "<group>"; };
 		9761C489264D19EE00E85183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9761C495264D28C300E85183 /* Your Home.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Your Home.entitlements"; sourceTree = "<group>"; };
+		978BDC6F2652AD8D00F36EC3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		9761C45E264D19EC00E85183 = {
 			isa = PBXGroup;
 			children = (
+				978BDC6F2652AD8D00F36EC3 /* README.md */,
 				9761C469264D19EC00E85183 /* Your Home */,
 				9761C47B264D19EE00E85183 /* Your HomeTests */,
 				9761C486264D19EE00E85183 /* Your HomeUITests */,
@@ -95,6 +98,7 @@
 		9761C469264D19EC00E85183 /* Your Home */ = {
 			isa = PBXGroup;
 			children = (
+				9761C495264D28C300E85183 /* Your Home.entitlements */,
 				9761C46A264D19EC00E85183 /* Your_HomeApp.swift */,
 				9761C46C264D19EC00E85183 /* ContentView.swift */,
 				9761C46E264D19ED00E85183 /* Assets.xcassets */,
@@ -417,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Your Home/Your Home.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Your Home/Preview Content\"";
 				DEVELOPMENT_TEAM = N8W8S83VPG;
@@ -429,6 +434,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sn30.Your-Home";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -439,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Your Home/Your Home.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Your Home/Preview Content\"";
 				DEVELOPMENT_TEAM = N8W8S83VPG;
@@ -451,6 +458,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sn30.Your-Home";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
