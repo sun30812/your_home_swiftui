@@ -24,9 +24,6 @@ struct DestinationPageView: View {
             .font(.title)
             .foregroundColor(color)
     }
-    
-    
-    
 }
 
 struct SettingsPage: View {
@@ -36,6 +33,13 @@ struct SettingsPage: View {
             Toggle("경고없이 삭제하기", isOn: $settings1)
         }
     }
+}
+
+struct TodoList : Identifiable {
+    var id  = UUID()
+    var title: String
+    
+    
 }
 
 struct MemoPage: View {
@@ -48,25 +52,49 @@ struct MemoPage: View {
 struct ContentView: View {
     
     @State var name: String = ""
-    @State var done = false
+    
     @State var goSetting = false;
+    @State var todoList = [TodoList(title: "할일 1")]
     
 
     func btnClick() {
         if (name == "/set") {
             goSetting.toggle()
+        } else {
+            todoList.append(TodoList(title: name))
         }
+        name = ""
     }
-    func checkMark() -> Image {
-        withAnimation{
-            if (done) {
-                return Image(systemName: "checkmark.circle.fill")
-            } else {
-                return Image(systemName: "checkmark.circle")
+    
+    
+    struct TodoListRow: View {
+        @State var done = false
+        func checkMark() -> Image {
+            withAnimation{
+                if (done) {
+                    return Image(systemName: "checkmark.circle.fill")
+                } else {
+                    return Image(systemName: "checkmark.circle")
+                }
+            }
+            
+        }
+        var list: TodoList
+        var body: some View {
+            HStack {
+                Button(action: {done.toggle()}) {
+                    checkMark()
+                }
+                Text(list.title)
+                    .font(.title2)
+                Spacer()
+                Image(systemName: "trash")
+                
             }
         }
-        
     }
+    
+   
     var body: some View {
         NavigationView {
             TabView {
@@ -88,17 +116,8 @@ struct ContentView: View {
                     
                     Text("오늘도 할일을 빨리 끝내봅시다!")
                         .font(.title)
-                    List {
-                        HStack {
-                            Button(action: { done.toggle() }) {
-                                checkMark()
-                            }
-                            Text("할일 1")
-                                .font(.title2)
-                            Spacer()
-                            Image(systemName: "trash")
-                        }
-                        
+                    List(todoList) { data in
+                        TodoListRow(list: data)
                     }
                 }.padding()
                 .tabItem {
