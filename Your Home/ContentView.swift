@@ -29,8 +29,11 @@ struct DestinationPageView: View {
 struct SettingsPage: View {
     @State private var settings1: Bool = false
     var body: some View {
-        List {
-            Toggle("경고없이 삭제하기", isOn: $settings1)
+        VStack {
+            List {
+                Toggle("경고없이 삭제하기", isOn: $settings1)
+            }
+            Text("경고없이 삭제하기: 삭제 아이콘 누를 시 경고 없이 바로 삭제합니다.")
         }
     }
 }
@@ -60,6 +63,8 @@ struct ContentView: View {
     func btnClick() {
         if (name == "/set") {
             goSetting.toggle()
+        } else if (name.isEmpty) {
+            
         } else {
             todoList.append(TodoList(title: name))
         }
@@ -69,6 +74,7 @@ struct ContentView: View {
     
     struct TodoListRow: View {
         @State var done = false
+        @State var alertShow = false
         func checkMark() -> Image {
             withAnimation{
                 if (done) {
@@ -85,11 +91,20 @@ struct ContentView: View {
                 Button(action: {done.toggle()}) {
                     checkMark()
                 }
+                Spacer(minLength: 23.0)
                 Text(list.title)
                     .font(.title2)
-                Spacer()
+                Spacer(minLength: 23.0)
+                Button(action: {
+                    alertShow = true
+                })
+                {
                 Image(systemName: "trash")
-                
+                }
+                    .buttonStyle(BorderlessButtonStyle())
+            }
+            .alert(isPresented: $alertShow) {
+                Alert(title: Text("Delete"), message: Text("Are you sure delete?"), primaryButton: .default(Text("No")), secondaryButton: .destructive(Text("delete")))
             }
         }
     }
@@ -119,6 +134,7 @@ struct ContentView: View {
                     List(todoList) { data in
                         TodoListRow(list: data)
                     }
+                    .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                 }.padding()
                 .tabItem {
                     Image(systemName: "house")
