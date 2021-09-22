@@ -27,11 +27,12 @@ struct DestinationPageView: View {
 }
 
 struct SettingsPage: View {
+    let settingItems = [SettingsItem(id: 0, title: "경고없이 삭제하기"), SettingsItem(id: 1, title: "테스트 설정")]
     @State private var settings1: Bool = false
     var body: some View {
         VStack {
-            List {
-                Toggle("경고없이 삭제하기", isOn: $settings1)
+            List(settingItems) {
+                data in SettingsItemRow(item: data)
             }
             Text("경고없이 삭제하기: 삭제 아이콘 누를 시 경고 없이 바로 삭제합니다.")
         }
@@ -41,8 +42,20 @@ struct SettingsPage: View {
 struct TodoList : Identifiable {
     var id  = UUID()
     var title: String
-    
-    
+}
+
+
+struct SettingsItem : Identifiable {
+    var id: Int
+    var title: String
+}
+
+struct SettingsItemRow: View {
+    @State var isOn: Bool = false
+    var item: SettingsItem
+    var body: some View {
+        Toggle(item.title, isOn: $isOn)
+    }
 }
 
 struct MemoPage: View {
@@ -145,7 +158,7 @@ struct ContentView: View {
                     .tabItem {
                         Image(systemName: "doc.append")
                     }
-                Text("Your Home Swift UI포팅 버전")
+                Text("Your Home의 Swift UI포팅 버전을 사용하고 있습니다.")
                     .tabItem {
                         Image(systemName: "info.circle")
                     }
